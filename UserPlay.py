@@ -11,10 +11,11 @@ class UserPlay:
         else:
             position = tuple([int(x) for x in position.split(',')])
 
-        new_board = self.board.move(position)
+        new_board, path = self.board.move(position)
         if new_board is not None:
             self.board = new_board
             self.board.print()
+            print('the path:', path)
         else:
             self.board.print()
 

@@ -121,13 +121,16 @@ class Board:
         if position in moves:
             down = self.check_moves_down(position)
             if not down:
-                return Board(self.Dimensions, self.KingPosition, position, self.Walls)
+                path = Helper.generatePath(self.CastlePosition, position)
+                return Board(self.Dimensions, self.KingPosition, position, self.Walls), path
             else:
-                return Board(self.Dimensions, self.KingPosition, (down.pop()[0], down.pop()[1]), self.Walls)
+                dest = down.pop()
+                path = Helper.generatePath(self.CastlePosition, (dest[0], dest[1]))
+                return Board(self.Dimensions, self.KingPosition, (dest[0], dest[1]), self.Walls), path
 
         else:
             print(f"{position} is an Illegal Move.")
-            return None
+            return None, []
 
     # def animated_print(self, old_position, new_position):
     #     old_board = Board(self.Dimensions, self.KingPosition, old_position, self.Walls)

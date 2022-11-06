@@ -42,6 +42,19 @@ def generateBoard(dimensions, Walls, CastlePosition, KingPosition):
     return array
 
 
+def generatePath(position1, position2):
+    if position1[1] < position2[1]:
+        path = [(position1[0], x) for x in range(position1[1], position2[1] + 1)]
+    else:
+        path = [(position1[0], x) for x in range(position1[1], position2[1] - 1, -1)]
+
+    if position1[0] == position2[0]:
+        return path
+    else:  # in case of fall
+        inclusion = [(x, position2[1]) for x in range(position1[0] + 1, position2[0] + 1)]
+        return path + inclusion
+
+
 class bcolors:
     BLACK = '\033[30m'
     RED = '\033[31m'

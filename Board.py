@@ -131,8 +131,3 @@ class Board:
         else:
             print(f"{position} is an Illegal Move.")
             return None, []
-
-    # def animated_print(self, old_position, new_position):
-    #     old_board = Board(self.Dimensions, self.KingPosition, old_position, self.Walls)
-    #     new_board = Board(self.Dimensions, self.KingPosition, new_position, self.Walls)
-    #     old_board.print()

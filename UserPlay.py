@@ -3,7 +3,7 @@ class UserPlay:
         self.board = board
 
     def prompt(self):
-        moves = self.board.check_moves()
+        moves = self.board.check_moves() + self.board.check_moves_up()
         position = input(f"where do you want to move the castle?\nP.S: the allowed moves are {moves}\n")
 
         if len(position) < 1:

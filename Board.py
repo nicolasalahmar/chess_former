@@ -35,7 +35,7 @@ class Board:
     def print(self):
         board = Helper.generateBoard(self.Dimensions, self.Walls,
                                      self.CastlePosition, self.KingPosition)
-        valid_moves = self.check_moves()
+        valid_moves = self.check_moves() + self.check_moves_up()
         for i, row in enumerate(board):
             for j, cell in enumerate(row):
                 if cell == 'X':
@@ -112,7 +112,7 @@ class Board:
         return result
 
     def check_moves(self):
-        return self.check_moves_left() + self.check_moves_right() + self.check_moves_up()
+        return self.check_moves_left() + self.check_moves_right()
 
     def move(self, position):
         moves = self.check_moves()

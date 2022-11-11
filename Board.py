@@ -3,7 +3,6 @@ import Helper
 
 class Board:
     def __init__(self, Dimensions, KingPosition, CastlePosition, Walls, filename=None):
-        self.board = None
         self.Dimensions = None
         self.KingPosition = None
         self.CastlePosition = None
@@ -17,8 +16,6 @@ class Board:
     def file_constructor(self, filename):
         extracted = Helper.readJson(filename)
         if extracted is not None:
-            self.board = Helper.generateBoard(extracted['Dimensions'], extracted['Walls'],
-                                              extracted['CastlePosition'], extracted['KingPosition'])
             self.Dimensions = tuple(extracted['Dimensions'])
             self.KingPosition = tuple(extracted['KingPosition'])
             self.CastlePosition = tuple(extracted['CastlePosition'])
@@ -27,7 +24,6 @@ class Board:
             raise ValueError("Could not read board from selected file.")
 
     def deepCopy(self, Dimensions, KingPosition, CastlePosition, Walls):
-        self.board = Helper.generateBoard(Dimensions, Walls, CastlePosition, KingPosition)
         self.Dimensions = Dimensions
         self.KingPosition = KingPosition
         self.CastlePosition = CastlePosition
@@ -37,8 +33,10 @@ class Board:
         return self.CastlePosition == obj.CastlePosition
 
     def print(self):
+        board = Helper.generateBoard(self.Dimensions, self.Walls,
+                                     self.CastlePosition, self.KingPosition)
         valid_moves = self.check_moves()
-        for i, row in enumerate(self.board):
+        for i, row in enumerate(board):
             for j, cell in enumerate(row):
                 if cell == 'X':
                     print(f"{Helper.bcolors.MAGENTA}{cell}{Helper.bcolors.ENDC}", end=' ')
@@ -124,9 +122,9 @@ class Board:
                 path = Helper.generatePath(self.CastlePosition, position)
                 return Board(self.Dimensions, self.KingPosition, position, self.Walls), path
             else:
-                dest = down.pop()
-                path = Helper.generatePath(self.CastlePosition, (dest[0], dest[1]))
-                return Board(self.Dimensions, self.KingPosition, (dest[0], dest[1]), self.Walls), path
+                destination = down.pop()
+                path = Helper.generatePath(self.CastlePosition, (destination[0], destination[1]))
+                return Board(self.Dimensions, self.KingPosition, (destination[0], destination[1]), self.Walls), path
 
         else:
             print(f"{position} is an Illegal Move.")

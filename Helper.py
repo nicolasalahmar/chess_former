@@ -17,6 +17,7 @@ def verifyBoard(array):
             return False
     return True
 
+
 def readJson(filename):
     if len(filename) < 1:
         filename = "Board.json"
@@ -31,6 +32,7 @@ def readJson(filename):
         else:
             return None
 
+
 def generateBoard(dimensions, Walls, CastlePosition, KingPosition):
     array = np.full(dimensions, 'O')
     for cell in Walls:
@@ -38,6 +40,7 @@ def generateBoard(dimensions, Walls, CastlePosition, KingPosition):
     array[CastlePosition[0] - 1][CastlePosition[1] - 1] = 'C'
     array[KingPosition[0] - 1][KingPosition[1] - 1] = 'K'
     return array
+
 
 def generatePath(position1, position2):
     if position1[1] < position2[1]:
@@ -50,6 +53,7 @@ def generatePath(position1, position2):
     else:  # in case of fall
         inclusion = [(x, position2[1]) for x in range(position1[0] + 1, position2[0] + 1)]
         return path + inclusion
+
 
 class bcolors:
     BLACK = '\033[30m'

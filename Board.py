@@ -12,7 +12,7 @@ class Board:
         if filename is not None:
             self.file_constructor(filename)
         else:
-            self.hardCopy(Dimensions, KingPosition, CastlePosition, Walls)
+            self.deepCopy(Dimensions, KingPosition, CastlePosition, Walls)
 
     def file_constructor(self, filename):
         extracted = Helper.readJson(filename)
@@ -26,7 +26,7 @@ class Board:
         else:
             raise ValueError("Could not read board from selected file.")
 
-    def hardCopy(self, Dimensions, KingPosition, CastlePosition, Walls):
+    def deepCopy(self, Dimensions, KingPosition, CastlePosition, Walls):
         self.board = Helper.generateBoard(Dimensions, Walls, CastlePosition, KingPosition)
         self.Dimensions = Dimensions
         self.KingPosition = KingPosition
@@ -40,9 +40,9 @@ class Board:
         valid_moves = self.check_moves()
         for i, row in enumerate(self.board):
             for j, cell in enumerate(row):
-                if cell == 'O':
+                if cell == 'X':
                     print(f"{Helper.bcolors.MAGENTA}{cell}{Helper.bcolors.ENDC}", end=' ')
-                elif cell == 'X':
+                elif cell == 'O':
                     if (i + 1, j + 1) in valid_moves:
                         print(f"{Helper.bcolors.GREEN}{cell}{Helper.bcolors.ENDC}", end=' ')
                     else:

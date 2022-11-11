@@ -129,3 +129,9 @@ class Board:
         else:
             print(f"{position} is an Illegal Move.")
             return None, []
+
+    def get_next_states(self):
+        next_states = []
+        for move in self.check_moves():
+            next_states.append(self.move(move)[0])         # move function return a tuple consisting of the board
+            return next_states                             # object and the path it took to get where it went

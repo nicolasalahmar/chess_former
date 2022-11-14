@@ -134,4 +134,4 @@ class Board:
         next_states = []
         for move in self.check_moves():
             next_states.append(self.move(move)[0])         # move function return a tuple consisting of the board
-            return next_states                             # object and the path it took to get where it went
+        return next_states                             # object and the path it took to get where it went

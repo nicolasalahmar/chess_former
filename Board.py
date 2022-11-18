@@ -2,16 +2,20 @@ import Helper
 
 
 class Board:
-    def __init__(self, Dimensions, KingPosition, CastlePosition, Walls, filename=None):
+    def __init__(self, Dimensions, KingPosition, CastlePosition, Walls, filename=None, path=None):
+        if path is None:
+            path = []
+
         self.Dimensions = None
         self.KingPosition = None
         self.CastlePosition = None
         self.Walls = None
+        self.path = path
 
         if filename is not None:
             self.file_constructor(filename)
         else:
-            self.deepCopy(Dimensions, KingPosition, CastlePosition, Walls)
+            self.deepCopy(Dimensions, KingPosition, CastlePosition, Walls, path)
 
     def file_constructor(self, filename):
         extracted = Helper.readJson(filename)
@@ -20,17 +24,19 @@ class Board:
             self.KingPosition = tuple(extracted['KingPosition'])
             self.CastlePosition = tuple(extracted['CastlePosition'])
             self.Walls = [tuple(x) for x in extracted['Walls']]
+            self.path.append(self.CastlePosition)
         else:
             raise ValueError("Could not read board from selected file.")
 
-    def deepCopy(self, Dimensions, KingPosition, CastlePosition, Walls):
+    def deepCopy(self, Dimensions, KingPosition, CastlePosition, Walls, path):
         self.Dimensions = Dimensions
         self.KingPosition = KingPosition
         self.CastlePosition = CastlePosition
         self.Walls = Walls
+        self.path = path
 
     def Equals(self, obj):
-        return self.CastlePosition == obj.CastlePosition
+        return self.CastlePosition == obj.CastlePosition and self.path == obj.path
 
     def print(self):
         board = Helper.generateBoard(self.Dimensions, self.Walls,
@@ -120,11 +126,14 @@ class Board:
             down = self.check_moves_down(position)
             if not down:
                 path = Helper.generatePath(self.CastlePosition, position)
-                return Board(self.Dimensions, self.KingPosition, position, self.Walls), path
+                self.path.append(position)
+                return Board(self.Dimensions, self.KingPosition, position, self.Walls, None, self.path), path
             else:
                 destination = down.pop()
                 path = Helper.generatePath(self.CastlePosition, (destination[0], destination[1]))
-                return Board(self.Dimensions, self.KingPosition, (destination[0], destination[1]), self.Walls), path
+                self.path.append(position)
+                return Board(self.Dimensions, self.KingPosition, (destination[0], destination[1]), self.Walls, None,
+                             self.path), path
 
         else:
             print(f"{position} is an Illegal Move.")
@@ -133,5 +142,5 @@ class Board:
     def get_next_states(self):
         next_states = []
         for move in self.check_moves():
-            next_states.append(self.move(move)[0])         # move function return a tuple consisting of the board
-        return next_states                             # object and the path it took to get where it went
+            next_states.append(self.move(move)[0])  # move function return a tuple consisting of the board
+        return next_states  # object and the path it took to get where it went

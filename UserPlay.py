@@ -15,7 +15,7 @@ class UserPlay:
         if new_board is not None:
             self.board = new_board
             self.board.print()
-            print('the path:', self.board.path)
+            print('the path:', self.board.path)     # todo this might be changed the second i figure out what the fuck path is 
         else:
             self.board.print()
 

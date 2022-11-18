@@ -5,8 +5,7 @@ from UserPlay import UserPlay
 
 
 def prompt(board):
-    # i = input("what would you like to do: \n1)- Play yourself\n2)- DFS\n3)- BFS\n4)- UCS\n5)- A*\n")
-    i = "3"
+    i = input("what would you like to do: \n1)- Play yourself\n2)- DFS\n3)- BFS\n4)- UCS\n5)- A*\n")
     match i:
         case "1":
             return UserPlay(board)
@@ -23,7 +22,7 @@ def prompt(board):
 
 
 if __name__ == '__main__':
-    b = Board((4, 4), (2, 2), (4, 4), [(1, 1)], '')
+    b = Board((4, 4), (2, 2), (4, 4), [(1, 1)], filename='', path=None)
 
     b.print()
 

@@ -1,6 +1,7 @@
 class UserPlay:
     def __init__(self, board):
         self.board = board
+        self.board.path.append(self.board)
 
     def prompt(self):
         moves = self.board.check_moves() + self.board.check_moves_up()
@@ -12,10 +13,12 @@ class UserPlay:
             position = tuple([int(x) for x in position.split(',')])
 
         new_board, path = self.board.move(position)
+        self.board.path.append(new_board)
         if new_board is not None:
             self.board = new_board
             self.board.print()
-            print('the path:', self.board.path)     # todo this might be changed the second i figure out what the fuck path is 
+            print('the path:', [x.CastlePosition for x in self.board.path])  # todo this might be changed the second i figure out what the
+            # fuck path is
         else:
             self.board.print()
 

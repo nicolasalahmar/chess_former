@@ -12,13 +12,12 @@ class UserPlay:
         else:
             position = tuple([int(x) for x in position.split(',')])
 
-        new_board, path = self.board.move(position)
+        new_board = self.board.move(position)
         self.board.path.append(new_board)
         if new_board is not None:
             self.board = new_board
             self.board.print()
-            print('the path:', [x.CastlePosition for x in self.board.path])  # todo this might be changed the second i figure out what the
-            # fuck path is
+            print('the path:', [x.CastlePosition for x in self.board.path])
         else:
             self.board.print()
 

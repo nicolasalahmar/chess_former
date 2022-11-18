@@ -97,7 +97,7 @@ class Board:
     def check_moves_up(self):
         result = []
         (i, j) = self.CastlePosition
-        while self.inside_board((i, j)):  # checking the right
+        while self.inside_board((i, j)):  # checking up
             i -= 1
             if not (self.inside_board((i, j)) and not (i, j) in self.Walls):
                 break
@@ -124,13 +124,11 @@ class Board:
         if position in moves:
             down = self.check_moves_down(position)
             if not down:
-                path = Helper.generatePath(self.CastlePosition, position)
-                return Board(self.Dimensions, self.KingPosition, position, self.Walls, None, self.path), path
+                return Board(self.Dimensions, self.KingPosition, position, self.Walls, None, self.path)
             else:
                 destination = down.pop()
-                path = Helper.generatePath(self.CastlePosition, (destination[0], destination[1]))
                 return Board(self.Dimensions, self.KingPosition, (destination[0], destination[1]), self.Walls, None,
-                             self.path), path
+                             self.path)
 
         else:
             print(f"{position} is an Illegal Move.")
@@ -139,5 +137,5 @@ class Board:
     def get_next_states(self):
         next_states = []
         for move in self.check_moves():
-            next_states.append(self.move(move)[0])  # move function return a tuple consisting of the board
+            next_states.append(self.move(move))  # move function return a tuple consisting of the board
         return next_states  # object and the path it took to get where it went

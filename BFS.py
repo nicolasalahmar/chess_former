@@ -34,5 +34,12 @@ class BFS:
             x.print()
             print()
         print([x.CastlePosition for x in solution.path])
-        print("number of visited nodes", len(self.visited))
+
+        s = 0
+        l1 = [x.path for x in self.visited]
+        for el in l1:
+            temp = [x.CastlePosition for x in el]
+            s += len(temp)
+
+        print("number of visited nodes", s)
         print("time elapsed:", round(t2 - t1, 4), "s")

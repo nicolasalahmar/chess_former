@@ -35,7 +35,12 @@ class Board:
         self.path = path
 
     def Equals(self, obj):
-        return self.CastlePosition == obj.CastlePosition and self.path == obj.path
+        l1 = [x.CastlePosition for x in self.path]
+        l1 = sorted(l1, key=lambda element: (element[0], element[1]))
+        l2 = [x.CastlePosition for x in obj.path]
+        l2 = sorted(l2, key=lambda element: (element[0], element[1]))
+
+        return l1 == l2 and self.CastlePosition == obj.CastlePosition
 
     def print(self):
         board = Helper.generateBoard(self.Dimensions, self.Walls,

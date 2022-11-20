@@ -1,4 +1,5 @@
 import time
+import Helper
 
 
 class BFS:
@@ -30,19 +31,4 @@ class BFS:
         t1 = time.perf_counter()
         solution = self.bfs()
         t2 = time.perf_counter()
-        for x in solution.path:
-            x.print()
-            print()
-
-        path_list = [x.CastlePosition for x in solution.path]
-        print("number of nodes in path is:", len(path_list))
-        print(path_list)
-
-        s = 0
-        l1 = [x.path for x in self.visited]
-        for el in l1:
-            temp = [x.CastlePosition for x in el]
-            s += len(temp)
-
-        print("number of visited nodes", s)
-        print("time elapsed:", round(t2 - t1, 4), "s")
+        Helper.print_blind_search(solution, self.visited, t2, t1)

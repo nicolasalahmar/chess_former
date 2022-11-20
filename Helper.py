@@ -55,6 +55,25 @@ def generatePath(position1, position2):
         return path + inclusion
 
 
+def print_blind_search(solution, visited, t2, t1):
+    for x in solution.path:
+        x.print()
+        print()
+
+    path_list = [x.CastlePosition for x in solution.path]
+    print("number of nodes in path is:", len(path_list))
+    print(path_list)
+
+    s = 0
+    l1 = [x.path for x in visited]
+    for el in l1:
+        temp = [x.CastlePosition for x in el]
+        s += len(temp)
+
+    print("number of visited nodes", s)
+    print("time elapsed:", round(t2 - t1, 4), "s")
+
+
 class bcolors:
     BLACK = '\033[30m'
     RED = '\033[31m'

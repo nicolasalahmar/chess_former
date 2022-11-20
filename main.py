@@ -1,6 +1,7 @@
 from Board import Board
 from DFS import DFS
 from BFS import BFS
+from UCS import UCS
 from UserPlay import UserPlay
 
 
@@ -13,8 +14,8 @@ def prompt(board):
             return DFS(board)
         case "3":
             return BFS(board)
-        # case "4":
-        #    return UCS(board)
+        case "4":
+            return UCS(board)
         # case "5":
         #    return Astar(board)
         case _:

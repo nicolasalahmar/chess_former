@@ -33,7 +33,10 @@ class BFS:
         for x in solution.path:
             x.print()
             print()
-        print([x.CastlePosition for x in solution.path])
+
+        path_list = [x.CastlePosition for x in solution.path]
+        print("number of nodes in path is:", len(path_list))
+        print(path_list)
 
         s = 0
         l1 = [x.path for x in self.visited]

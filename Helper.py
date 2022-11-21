@@ -59,7 +59,7 @@ def print_blind_search(solution, n, t2, t1):
     print()
     if solution is None:
         print("there is no solution!")
-        exit()
+        return
     for x in solution.path:
         x.print()
         print()
@@ -71,6 +71,14 @@ def print_blind_search(solution, n, t2, t1):
     print("number of nodes traversed:", n)
 
     print("time elapsed:", round(t2 - t1, 4), "s")
+
+
+def initialize_dict(board):
+    temp = {}
+    for i in range(board.Dimensions[0] + 1):
+        for j in range(board.Dimensions[1] + 1):
+            temp[(i, j)] = []
+    return temp
 
 
 class bcolors:

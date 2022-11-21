@@ -1,13 +1,6 @@
 import time
 from PriorityQueue import PriorityQueue
-
-
-def initialize_dict(board):
-    temp = {}
-    for i in range(board.Dimensions[0] + 1):
-        for j in range(board.Dimensions[1] + 1):
-            temp[(i, j)] = []
-    return temp
+import Helper
 
 
 class UCS:
@@ -19,7 +12,7 @@ class UCS:
         self.q = PriorityQueue()  # priority queue for ucs implementation
         self.board = board
         self.w = 1  # edge cost is always 1
-        self.parent = initialize_dict(self.board)
+        self.parent = Helper.initialize_dict(self.board)
         self.n = 0
         self.arr = []
 
@@ -50,7 +43,7 @@ class UCS:
     def print_solution(self, i):
         if i is None:
             print("there is no solution!")
-            exit()
+            return
         if not self.parent[i.CastlePosition]:
             return
         self.print_solution(self.parent[i.CastlePosition].pop())

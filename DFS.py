@@ -7,6 +7,7 @@ class DFS:
         self.visited = []
         self.s = []  # stack for dfs implementation
         self.board = board
+        self.n = 0
 
     def dfs(self):
         self.visited.append(self.board)  # just append the first position into the queue
@@ -17,6 +18,7 @@ class DFS:
             if current_state.Solved():  # check if final state break
                 return current_state
             for state in current_state.get_next_states():
+                self.n += 1
                 if self.state_not_in_path(state):
                     self.s.append(state)
                     self.visited.append(state)
@@ -31,4 +33,4 @@ class DFS:
         t1 = time.perf_counter()
         solution = self.dfs()
         t2 = time.perf_counter()
-        Helper.print_blind_search(solution, self.visited, t2, t1)
+        Helper.print_blind_search(solution, self.n, t2, t1)

@@ -12,6 +12,7 @@ class UCS:
         self.board = board
         self.w = 1  # edge cost is always 1
         self.parent = {}
+        self.n = 0
 
     def ucs(self):
         x, y = self.board.CastlePosition
@@ -28,6 +29,7 @@ class UCS:
                 continue
 
             for child in current_state.get_next_states():
+                self.n += 1
                 x, y = child.CastlePosition  # x and y of child
                 if path + self.w < self.dist[x][y]:
                     self.parent[(x, y)] = current_state.CastlePosition
@@ -47,4 +49,5 @@ class UCS:
             i = self.parent[i]
 
         print()
+        print("the number of nodes is:", self.n)
         print("time elapsed:", round(t2 - t1, 4), "s")

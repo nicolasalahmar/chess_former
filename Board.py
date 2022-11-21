@@ -122,7 +122,7 @@ class Board:
         return result
 
     def check_moves(self):
-        return self.check_moves_left() + self.check_moves_right()
+        return self.check_moves_left() + self.check_moves_right() + self.check_moves_up()
 
     def move(self, position):
         moves = self.check_moves()
@@ -131,6 +131,8 @@ class Board:
             if not down:
                 return Board(self.Dimensions, self.KingPosition, position, self.Walls, None, self.path)
             else:
+                if position == self.KingPosition:
+                    return Board(self.Dimensions, self.KingPosition, position, self.Walls, None, self.path)
                 destination = down.pop()
                 return Board(self.Dimensions, self.KingPosition, (destination[0], destination[1]), self.Walls, None,
                              self.path)

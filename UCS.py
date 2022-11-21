@@ -68,7 +68,7 @@ class UCS:
         print([x.CastlePosition for x in self.arr])
 
         print()
-        print("the number of nodes is:", self.n)
+        print("the number of nodes traversed is:", self.n)
         print("the perfect amount of moves to get to the answer:",
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")

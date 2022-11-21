@@ -15,4 +15,4 @@ class PriorityQueue:
         bisect.insort_left(self.queue, data, key=lambda element: element[1])
 
     def pop(self):
-        return self.queue.pop()
+        return self.queue.pop(0)

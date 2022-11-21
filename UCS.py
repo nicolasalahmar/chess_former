@@ -66,3 +66,5 @@ class UCS:
         print("the perfect amount of moves to get to the answer:",
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")
+
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n}

@@ -6,7 +6,7 @@ from UserPlay import UserPlay
 
 
 def prompt(board):
-    i = input("what would you like to do: \n1)- Play yourself\n2)- DFS\n3)- BFS\n4)- UCS\n5)- A*\n")
+    i = input("what would you like to do: \n1)- Play yourself\n2)- DFS\n3)- BFS\n4)- UCS\n5)- A*\n6)- Compare Algorithms\n")
     match i:
         case "1":
             return UserPlay(board)
@@ -18,8 +18,12 @@ def prompt(board):
             return UCS(board)
         # case "5":
         #    return Astar(board)
+        case "6":
+            print(" UCS stats:", UCS(board).loop(), "\n", "DFS stats:", DFS(board).loop(), "\n", "BFS stats:",
+                  BFS(board).loop())
+            exit()
         case _:
-            return None
+            exit()
 
 
 if __name__ == '__main__':
@@ -28,3 +32,4 @@ if __name__ == '__main__':
     b.print()
 
     prompt(b).loop()
+    exit()

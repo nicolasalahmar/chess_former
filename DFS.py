@@ -34,3 +34,4 @@ class DFS:
         solution = self.dfs()
         t2 = time.perf_counter()
         Helper.print_blind_search(solution, self.n, t2, t1)
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n}

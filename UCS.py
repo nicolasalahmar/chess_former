@@ -21,6 +21,7 @@ class UCS:
         self.w = 1  # edge cost is always 1
         self.parent = initialize_dict(self.board)
         self.n = 0
+        self.arr = []
 
     def ucs(self):
         x, y = self.board.CastlePosition
@@ -47,19 +48,24 @@ class UCS:
                     self.q.push((child, self.dist[x][y]))
 
     def print_solution(self, i):
+        if i is None:
+            print("there is no solution!")
+            exit()
         if not self.parent[i.CastlePosition]:
             return
         self.print_solution(self.parent[i.CastlePosition].pop())
         print("=====================================================")
         i.print()
+        self.arr.append(i)
 
     def loop(self):
         t1 = time.perf_counter()
         solution = self.ucs()
         t2 = time.perf_counter()
-        print("the path:")
 
         self.print_solution(solution)
+        print("\nthe path: ")
+        print([x.CastlePosition for x in self.arr])
 
         print()
         print("the number of nodes is:", self.n)

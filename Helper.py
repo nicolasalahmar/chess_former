@@ -57,6 +57,9 @@ def generatePath(position1, position2):
 
 def print_blind_search(solution, n, t2, t1):
     print()
+    if solution is None:
+        print("there is no solution!")
+        exit()
     for x in solution.path:
         x.print()
         print()

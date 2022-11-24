@@ -1,6 +1,8 @@
 import json
 import numpy as np
 
+import Board
+
 
 def verifyBoard(array):
     if not (array["Dimensions"][0] >= array["CastlePosition"][0] >= 1 and
@@ -61,12 +63,12 @@ def print_blind_search(solution, n, t2, t1):
         print("there is no solution!")
         return
     for x in solution.path:
-        x.print()
+        temp = Board.Board(solution.Dimensions, solution.KingPosition, x, solution.Walls)
+        temp.print()
         print()
 
-    path_list = [x.CastlePosition for x in solution.path]
-    print("number of nodes in path is:", len(path_list))
-    print(path_list)
+    print("number of nodes in path is:", len(solution.path))
+    print(solution.path)
 
     print("number of nodes traversed:", n)
 

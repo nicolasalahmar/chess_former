@@ -35,10 +35,8 @@ class Board:
         self.path = path
 
     def Equals(self, obj):
-        l1 = [x.CastlePosition for x in self.path]
-        l1 = sorted(l1, key=lambda element: (element[0], element[1]))
-        l2 = [x.CastlePosition for x in obj.path]
-        l2 = sorted(l2, key=lambda element: (element[0], element[1]))
+        l1 = sorted(self.path, key=lambda element: (element[0], element[1]))
+        l2 = sorted(obj.path, key=lambda element: (element[0], element[1]))
 
         return l1 == l2 and self.CastlePosition == obj.CastlePosition
 

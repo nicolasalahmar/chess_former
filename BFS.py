@@ -14,7 +14,7 @@ class BFS:
         self.q.append(self.board)  # mark it as visited
         while self.q:
             current_state = self.q.pop(0)  # pop the node we want to process from the queue
-            current_state.path.append(current_state)
+            current_state.path.append(current_state.CastlePosition)
             if current_state.Solved():  # check if final state break
                 return current_state
             for state in current_state.get_next_states():

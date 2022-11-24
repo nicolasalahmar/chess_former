@@ -17,6 +17,9 @@ class Board:
         else:
             self.deepCopy(Dimensions, KingPosition, CastlePosition, Walls, path)
 
+    def not_parent(self, x):
+        return x not in self.path
+
     def file_constructor(self, filename):
         extracted = Helper.readJson(filename)
         if extracted is not None:

@@ -19,7 +19,7 @@ class BFS:
                 return current_state
             for state in current_state.get_next_states():
                 self.n += 1
-                if self.state_not_in_path(state):
+                if self.state_not_in_path(state) and state.not_parent(state.CastlePosition):
                     self.q.append(state)
                     self.visited.append(state)
 

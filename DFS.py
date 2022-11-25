@@ -19,7 +19,7 @@ class DFS:
                 return current_state
             for state in current_state.get_next_states():
                 self.n += 1
-                if self.state_not_in_path(state) and state.not_parent(state.CastlePosition):
+                if state.not_parent(state.CastlePosition) and self.state_not_in_path(state):
                     self.s.append(state)
                     self.visited.append(state)
 

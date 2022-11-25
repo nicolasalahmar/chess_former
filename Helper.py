@@ -17,6 +17,10 @@ def verifyBoard(array):
         if not (array["Dimensions"][0] >= cell[0] >= 1 and
                 array["Dimensions"][1] >= cell[1] >= 1):
             return False
+
+    for cell in array["Walls"]:
+        if (cell[0] == array["CastlePosition"][0] and cell[1] == array["CastlePosition"][1]) or (cell[0] == array["KingPosition"][0] and cell[1] == array["KingPosition"][1]):
+            return False
     return True
 
 

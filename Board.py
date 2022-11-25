@@ -38,7 +38,11 @@ class Board:
         self.path = path[:]
 
     def Equals(self, obj):
-        return set(obj.path) == set(self.path) and self.CastlePosition == obj.CastlePosition
+        b = [
+            set(obj.path) == set(self.path),
+            self.CastlePosition == obj.CastlePosition
+        ]
+        return all(b)
 
     def print(self):
         board = Helper.generateBoard(self.Dimensions, self.Walls,

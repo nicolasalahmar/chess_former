@@ -23,11 +23,8 @@ class BFS:
                     self.q.append(state)
                     self.visited.append(state)
 
-    def state_not_in_path(self, obj1):
-        for obj2 in self.visited:
-            if obj2.Equals(obj1):
-                return False
-        return True
+    def state_not_in_path(self, state):
+        return not any(state.Equals(x) for x in self.visited)
 
     def loop(self):
         t1 = time.perf_counter()

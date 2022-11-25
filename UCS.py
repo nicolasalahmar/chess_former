@@ -45,6 +45,7 @@ class UCS:
             print("there is no solution!")
             return
         if not self.parent[i.CastlePosition]:
+            self.arr.append(i)
             return
         self.print_solution(self.parent[i.CastlePosition].pop())
         print("=====================================================")
@@ -58,7 +59,8 @@ class UCS:
 
         self.print_solution(solution)
         print("\nthe path: ")
-        print([x.CastlePosition for x in self.arr])
+        solution_path = [x.CastlePosition for x in self.arr]
+        print(solution_path)
 
         print()
         print("the number of nodes traversed is:", self.n)
@@ -66,4 +68,4 @@ class UCS:
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")
 
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n}
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "path": solution_path}

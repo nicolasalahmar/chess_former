@@ -19,16 +19,13 @@ class BFS:
                 return current_state
             for state in current_state.get_next_states():
                 self.n += 1
-                if state.not_parent(state.CastlePosition) and self.state_not_in_path(state):
+                if state.not_parent(state.CastlePosition):
                     self.q.append(state)
                     self.visited.append(state)
-
-    def state_not_in_path(self, state):
-        return not any(state.Equals(x) for x in self.visited)
 
     def loop(self):
         t1 = time.perf_counter()
         solution = self.bfs()
         t2 = time.perf_counter()
         Helper.print_blind_search(solution, self.n, t2, t1)
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n}
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "path": solution.path}

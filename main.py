@@ -23,8 +23,9 @@ def prompt(b):
             b1 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             b2 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             b3 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
+            b4 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             print(" UCS stats:", UCS(b1).loop(), "\n", "DFS stats:", DFS(b2).loop(), "\n", "BFS stats:",
-                  BFS(b3).loop())
+                  BFS(b3).loop(), "\n", "A* stats:", Astar(b4).loop())
             exit()
         case _:
             exit()

@@ -2,6 +2,7 @@ from Board import Board
 from DFS import DFS
 from BFS import BFS
 from UCS import UCS
+from Astar import Astar
 from UserPlay import UserPlay
 
 
@@ -16,8 +17,8 @@ def prompt(b):
             return BFS(b)
         case "4":
             return UCS(b)
-        # case "5":
-        #    return Astar(board)
+        case "5":
+            return Astar(board)
         case "6":
             b1 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             b2 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)

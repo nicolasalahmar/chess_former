@@ -13,11 +13,11 @@ class Astar:
 
     def heuristic(self, position):
         if self.board.KingPosition[1] > self.board.CastlePosition[1]:  # in case of elevation from the king find the
-            l = []  # nearest hole to this position and calculate the distance from it
+            hole_list = []  # nearest hole to this position and calculate the distance from it
             for hole in self.find_holes(position):
-                l.append(Helper.absolute_distance(position, hole))
-            if l:
-                return min(l)
+                hole_list.append(Helper.absolute_distance(position, hole))
+            if hole_list:
+                return min(hole_list)
             else:
                 return -1
         elif self.board.KingPosition[1] == self.board.CastlePosition[1]:    # in case we are on the same level as the king
@@ -44,7 +44,6 @@ class Astar:
             current_state, path = self.q.pop()  # pop the node we want to process from the queue
 
             x, y = current_state.CastlePosition
-            print((x, y))
             if current_state.Solved():
                 return current_state
 
@@ -57,7 +56,11 @@ class Astar:
                 if path + self.w < self.dist[x][y]:
                     self.parent[(x, y)].append(current_state)
                     self.dist[x][y] = path + self.w
-                    self.q.push((child, self.dist[x][y] + self.heuristic((current_state.CastlePosition[0], y))))
+                    h = self.heuristic((current_state.CastlePosition[0], y))
+                    if h == -1:
+                        continue
+                    else:
+                        self.q.push((child, self.dist[x][y] + h))
 
     def print_solution(self, i):
         if i is None:

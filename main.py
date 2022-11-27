@@ -35,4 +35,5 @@ if __name__ == '__main__':
     board.print()
 
     prompt(board).loop()
+    input()
     exit()

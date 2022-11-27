@@ -2,12 +2,13 @@ import time
 from PriorityQueue import PriorityQueue
 import Helper
 
+MAX_INT = 999999
+
 
 class UCS:
-    MAX_INT = 999999
 
     def __init__(self, board):
-        self.dist = [[UCS.MAX_INT for _ in range(board.Dimensions[1] + 1)] for _ in
+        self.dist = [[MAX_INT for _ in range(board.Dimensions[1] + 1)] for _ in
                      range(board.Dimensions[0] + 1)]  # dist list
         self.q = PriorityQueue()  # priority queue for ucs implementation
         self.board = board

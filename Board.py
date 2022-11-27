@@ -22,13 +22,13 @@ class Board:
 
     def file_constructor(self, filename):
         extracted = Helper.readJson(filename)
-        if extracted is not None:
+        if not isinstance(extracted, str):
             self.Dimensions = tuple(extracted['Dimensions'])
             self.KingPosition = tuple(extracted['KingPosition'])
             self.CastlePosition = tuple(extracted['CastlePosition'])
             self.Walls = [tuple(x) for x in extracted['Walls']]
         else:
-            raise ValueError("Could not read board from selected file.")
+            raise ValueError(extracted)
 
     def deepCopy(self, Dimensions, KingPosition, CastlePosition, Walls, path):
         self.Dimensions = Dimensions

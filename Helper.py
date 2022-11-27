@@ -1,42 +1,42 @@
 import json
 import numpy as np
-
+import math
 import Board
 
 
 def verifyBoard(array):
     if not (array["Dimensions"][0] >= array["CastlePosition"][0] >= 1 and
             array["Dimensions"][1] >= array["CastlePosition"][1] >= 1):
-        return False  # check the castle is in the correct place
+        return "Castle Position doesn't conform with dimensions."  # check the castle is in the correct place
 
     if not (array["Dimensions"][0] >= array["KingPosition"][0] >= 1 and
             array["Dimensions"][1] >= array["KingPosition"][1] >= 1):
-        return False  # check the king is in the correct place
+        return "King position doesn't conform with dimensions."  # check the king is in the correct place
 
     for cell in array["Walls"]:
         if not (array["Dimensions"][0] >= cell[0] >= 1 and
                 array["Dimensions"][1] >= cell[1] >= 1):
-            return False
+            return f"({cell} wall position is not correct."
 
     for cell in array["Walls"]:
-        if (cell[0] == array["CastlePosition"][0] and cell[1] == array["CastlePosition"][1]) or (cell[0] == array["KingPosition"][0] and cell[1] == array["KingPosition"][1]):
-            return False
+        if (cell[0] == array["CastlePosition"][0] and cell[1] == array["CastlePosition"][1]) or (
+                cell[0] == array["KingPosition"][0] and cell[1] == array["KingPosition"][1]):
+            return "Castle or King are in the same position as a wall."
     return True
 
 
 def readJson(filename):
     if len(filename) < 1:
         filename = "Board.json"
-    try:
-        f = open(filename, 'r')
-    except FileNotFoundError:
-        return None
+
+    f = open(filename, 'r')
+    board = json.loads(f.read())
+
+    error_message = verifyBoard(board)
+    if isinstance(error_message, str):
+        return error_message
     else:
-        board = json.loads(f.read())
-        if verifyBoard(board):
-            return board
-        else:
-            return None
+        return board
 
 
 def generateBoard(dimensions, Walls, CastlePosition, KingPosition):
@@ -85,6 +85,10 @@ def initialize_dict(board):
         for j in range(board.Dimensions[1] + 1):
             temp[(i, j)] = []
     return temp
+
+
+def absolute_distance(position1, position2):
+    return math.sqrt(((position1[0] - position2[0]) ** 2) + (position1[1] - position2[1]) ** 2)
 
 
 class bcolors:

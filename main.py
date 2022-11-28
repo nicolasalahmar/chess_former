@@ -18,7 +18,7 @@ def prompt(b):
         case "4":
             return UCS(b)
         case "5":
-            return Astar(board)
+            return Astar(b)
         case "6":
             b1 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             b2 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)

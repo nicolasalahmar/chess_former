@@ -12,18 +12,18 @@ class Astar:
                 (position[0] + 1, x) not in self.board.Walls]
 
     def heuristic(self, position):
-        if self.board.KingPosition[1] > self.board.CastlePosition[1]:  # in case of elevation from the king find the
+        if self.board.KingPosition[0] > self.board.CastlePosition[0]:  # in case of elevation from the king find the
             hole_list = []  # nearest hole to this position and calculate the distance from it
             for hole in self.find_holes(position):
                 hole_list.append(Helper.absolute_distance(position, hole))
             if hole_list:
                 return min(hole_list)
             else:
-                return -1
-        elif self.board.KingPosition[1] == self.board.CastlePosition[1]:    # in case we are on the same level as the king
+                return MAX_INT
+        elif self.board.KingPosition[0] == self.board.CastlePosition[0]:  # in case we are on the same level as the king
             return Helper.absolute_distance(position, self.board.KingPosition)
         else:
-            return -1
+            return MAX_INT
 
     def __init__(self, board):
         self.dist = [[MAX_INT for _ in range(board.Dimensions[1] + 1)] for _ in
@@ -57,10 +57,7 @@ class Astar:
                     self.parent[(x, y)].append(current_state)
                     self.dist[x][y] = path + self.w
                     h = self.heuristic((current_state.CastlePosition[0], y))
-                    if h == -1:
-                        continue
-                    else:
-                        self.q.push((child, self.dist[x][y] + h))
+                    self.q.push((child, self.dist[x][y] + h))
 
     def print_solution(self, i):
         if i is None:

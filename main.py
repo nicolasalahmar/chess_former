@@ -10,15 +10,15 @@ def prompt(b):
     i = input("what would you like to do: \n1)- Play yourself\n2)- DFS\n3)- BFS\n4)- UCS\n5)- A*\n6)- Compare Algorithms\n")
     match i:
         case "1":
-            return UserPlay(b)
+            return UserPlay(b).loop()
         case "2":
-            return DFS(b)
+            return DFS(b).loop()
         case "3":
-            return BFS(b)
+            return BFS(b).loop()
         case "4":
-            return UCS(b)
+            return UCS(b).loop()
         case "5":
-            return Astar(b)
+            return Astar(b).loop()
         case "6":
             b1 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             b2 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
@@ -26,16 +26,15 @@ def prompt(b):
             b4 = Board(b.Dimensions, b.KingPosition, b.CastlePosition, b.Walls)
             print(" UCS stats:", UCS(b1).loop(), "\n", "DFS stats:", DFS(b2).loop(), "\n", "BFS stats:",
                   BFS(b3).loop(), "\n", "A* stats:", Astar(b4).loop())
-            exit()
         case _:
             exit()
 
 
 if __name__ == '__main__':
-    board = Board((4, 4), (2, 2), (4, 4), [(1, 1)], filename='', path=None)
+    board = Board((4, 4), (2, 2), (4, 4), [(1, 1)], filename='Board.json', path=None)
 
     board.print()
 
-    prompt(board).loop()
+    prompt(board)
     input()
     exit()

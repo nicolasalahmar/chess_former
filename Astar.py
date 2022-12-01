@@ -17,11 +17,11 @@ class Astar:
             for hole in self.find_holes(position):
                 hole_list.append(Helper.absolute_distance(position, hole))
             if hole_list:
-                return min(hole_list)
+                return min(hole_list) * 1000
             else:
                 return MAX_INT
         elif self.board.KingPosition[0] == self.board.CastlePosition[0]:  # in case we are on the same level as the king
-            return Helper.absolute_distance(position, self.board.KingPosition)
+            return Helper.absolute_distance(position, self.board.KingPosition) * 1000
         else:
             return MAX_INT
 
@@ -33,6 +33,7 @@ class Astar:
         self.w = 1  # edge cost is always 1
         self.parent = Helper.initialize_dict(self.board)
         self.n = 0
+        self.m = 0
         self.arr = []
 
     def Astar(self):
@@ -44,6 +45,9 @@ class Astar:
             current_state, path = self.q.pop()  # pop the node we want to process from the queue
 
             x, y = current_state.CastlePosition
+
+            self.m += 1
+            print(current_state.CastlePosition)
             if current_state.Solved():
                 return current_state
 
@@ -82,9 +86,10 @@ class Astar:
         print(solution_path)
 
         print()
-        print("the number of nodes traversed is:", self.n)
+        print("number of nodes traversed is:", self.n)
+        print("number of nodes processed is:", self.m)
         print("the perfect amount of moves to get to the answer:",
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")
 
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "path": solution_path}
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "processed_nodes": self.m, "path": solution_path}

@@ -1,7 +1,7 @@
 {
   "CastlePosition":[2,2],
-  "KingPosition":[8, 1],
-  "Dimensions":[100,100],
+  "KingPosition":[10, 1],
+  "Dimensions":[10,80],
   "Walls":[
     [3,1],
     [3,2],
@@ -36,7 +36,6 @@
     [9,9],
     [9,10],
     [10,9],
-    [10,10],
-    [9,10]
+    [10,10]
   ]
 }

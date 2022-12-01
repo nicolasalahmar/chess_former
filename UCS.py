@@ -15,6 +15,7 @@ class UCS:
         self.w = 1  # edge cost is always 1
         self.parent = Helper.initialize_dict(self.board)
         self.n = 0
+        self.m = 0
         self.arr = []
 
     def ucs(self):
@@ -27,6 +28,7 @@ class UCS:
 
             x, y = current_state.CastlePosition
 
+            self.m += 1
             if current_state.Solved():
                 return current_state
 
@@ -64,9 +66,10 @@ class UCS:
         print(solution_path)
 
         print()
-        print("the number of nodes traversed is:", self.n)
+        print("number of nodes instantiated is:", self.n)
+        print("number of nodes processed is:", self.m)
         print("the perfect amount of moves to get to the answer:",
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")
 
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "path": solution_path}
+        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "processed_nodes": self.m, "path": solution_path}

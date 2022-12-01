@@ -48,7 +48,7 @@ def generateBoard(dimensions, Walls, CastlePosition, KingPosition):
     return array
 
 
-def print_blind_search(solution, n, t2, t1):
+def print_blind_search(solution, n, m, t2, t1):
     print()
     if solution is None:
         print("there is no solution!")
@@ -61,7 +61,8 @@ def print_blind_search(solution, n, t2, t1):
     print("number of nodes in path is:", len(solution.path))
     print(solution.path)
 
-    print("number of nodes traversed:", n)
+    print("number of nodes instantiated:", n)
+    print("number of nodes processed:", m)
 
     print("time elapsed:", round(t2 - t1, 4), "s")
 

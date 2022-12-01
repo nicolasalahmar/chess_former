@@ -30,4 +30,4 @@ class BFS:
         solution = self.bfs()
         t2 = time.perf_counter()
         Helper.print_blind_search(solution, self.n, self.m, t2, t1)
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "processed_nodes": self.m, "path": solution.path}
+        return {"time_elapsed": round(t2 - t1, 4), "instantiated_nodes": self.n, "processed_nodes": self.m, "path": solution.path}

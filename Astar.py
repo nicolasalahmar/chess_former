@@ -92,4 +92,4 @@ class Astar:
               self.dist[self.board.KingPosition[0]][self.board.KingPosition[1]])
         print("time elapsed:", round(t2 - t1, 4), "s")
 
-        return {"time_elapsed": round(t2 - t1, 4), "number_of_nodes": self.n, "processed_nodes": self.m, "path": solution_path}
+        return {"time_elapsed": round(t2 - t1, 4), "instantiated_nodes": self.n, "processed_nodes": self.m, "path": solution_path}

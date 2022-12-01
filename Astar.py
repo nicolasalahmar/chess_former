@@ -47,7 +47,6 @@ class Astar:
             x, y = current_state.CastlePosition
 
             self.m += 1
-            print(current_state.CastlePosition)
             if current_state.Solved():
                 return current_state
 
